@@ -13,6 +13,14 @@ const pointSchema = z.object({
   ts: z.string(),
 });
 
+type RidePoint = {
+  lat: number;
+  lng: number;
+  ts: string;
+  speed?: number;
+  altitude?: number;
+};
+
 const startRideSchema = z.object({
   points: z.array(pointSchema).default([]),
 });
@@ -42,7 +50,17 @@ function haversineKm(a: { lat: number; lng: number }, b: { lat: number; lng: num
   return 2 * earthRadiusKm * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
 }
 
-function calculateRideStats(points: Array<{ lat: number; lng: number; ts: string; speed?: number }>): {
+function normalizeRidePoints(points: RidePoint[]): RidePoint[] {
+  return points.map((point) => ({
+    lat: point.lat,
+    lng: point.lng,
+    ts: point.ts,
+    speed: point.speed,
+    altitude: point.altitude,
+  }));
+}
+
+function calculateRideStats(points: RidePoint[]): {
   distanceKm: number;
   durationSec: number;
   avgSpeedKmh: number;
@@ -74,7 +92,8 @@ ridesRouter.post("/start", async (req, res) => {
     return;
   }
 
-  const ride = await createRide({ userId: req.auth!.userId, points: parsed.data.points });
+  const points = normalizeRidePoints(parsed.data.points as RidePoint[]);
+  const ride = await createRide({ userId: req.auth!.userId, points });
   res.status(201).json({
     id: ride.id,
     userId: ride.user_id,
@@ -95,12 +114,13 @@ ridesRouter.post("/:id/stop", async (req, res) => {
     return;
   }
 
-  const computed = calculateRideStats(parsed.data.points);
+  const points = normalizeRidePoints(parsed.data.points as RidePoint[]);
+  const computed = calculateRideStats(points);
 
   const ride = await stopRide({
     id: req.params.id,
     userId: req.auth!.userId,
-    points: parsed.data.points,
+    points,
     distanceKm: computed.distanceKm || parsed.data.distanceKm || 0,
     durationSec: computed.durationSec || parsed.data.durationSec || 1,
     avgSpeedKmh: computed.avgSpeedKmh || parsed.data.avgSpeedKmh || 0,
