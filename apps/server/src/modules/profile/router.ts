@@ -163,7 +163,24 @@ profileRouter.patch("/me/rider", async (req, res) => {
   }
 
   try {
-    const rider = await updateRiderProfile({ userId: req.auth!.userId, ...parsed.data });
+    const riderPayload = {
+      userId: req.auth!.userId,
+      displayName: parsed.data.displayName,
+      phone: parsed.data.phone,
+      city: parsed.data.city,
+      state: parsed.data.state,
+      country: parsed.data.country,
+      avatarUrl: parsed.data.avatarUrl,
+      fullName: parsed.data.fullName,
+      bloodGroup: parsed.data.bloodGroup,
+      emergencyContactName: parsed.data.emergencyContactName,
+      emergencyContactPhone: parsed.data.emergencyContactPhone,
+      bikeModels: parsed.data.bikeModels,
+      clubName: parsed.data.clubName,
+      isSoloRider: parsed.data.isSoloRider,
+    };
+
+    const rider = await updateRiderProfile(riderPayload);
     await sendPushToUsersSafe({
       userIds: [req.auth!.userId],
       title: "Profile updated",
@@ -222,7 +239,22 @@ profileRouter.patch("/me/club", async (req, res) => {
   }
 
   try {
-    const club = await updateClubProfileByOwner({ userId: req.auth!.userId, ...parsed.data });
+    const clubPayload = {
+      userId: req.auth!.userId,
+      displayName: parsed.data.displayName,
+      phone: parsed.data.phone,
+      city: parsed.data.city,
+      state: parsed.data.state,
+      country: parsed.data.country,
+      logoUrl: parsed.data.logoUrl,
+      clubName: parsed.data.clubName,
+      adminName: parsed.data.adminName,
+      about: parsed.data.about,
+      facebookUrl: parsed.data.facebookUrl,
+      instagramUrl: parsed.data.instagramUrl,
+    };
+
+    const club = await updateClubProfileByOwner(clubPayload);
     await sendPushToUsersSafe({
       userIds: [req.auth!.userId],
       title: "Profile updated",
