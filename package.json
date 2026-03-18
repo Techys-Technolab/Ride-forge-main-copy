@@ -1,0 +1,24 @@
+{
+  "name": "rideforge-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": "20.x"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm --workspace @rideforge/server run dev\" \"npm --workspace @rideforge/mobile run start\"",
+    "build": "npm run build -ws",
+    "lint": "npm run lint -ws",
+    "test": "npm run test -ws",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "prettier": "^3.5.2",
+    "typescript": "^5.7.3"
+  }
+}

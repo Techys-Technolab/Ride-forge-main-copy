@@ -1,0 +1,68 @@
+﻿
+> @rideforge/mobile@1.0.0 android
+> expo run:android
+
+env: load .env
+env: export EXPO_PUBLIC_API_URL
+node.exe : 
+CommandError: No 
+Android connected 
+device found, and no 
+emulators could be 
+started automatically.
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (CommandError:   
+  N... automaticall    
+y.:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+Connect a device or 
+create an emulator (htt
+ps://docs.expo.dev/work
+flow/android-studio-emu
+lator).
+Then follow the 
+instructions here to 
+enable USB debugging:
+https://developer.andro
+id.com/studio/run/devic
+e.html#developer-device
+-options. If you are 
+using Genymotion go to 
+Settings -> ADB, 
+select "Use custom 
+Android SDK tools", 
+and point it at your 
+Android SDK directory.
+npm error Lifecycle 
+script `android` 
+failed with error:
+npm error code 1
+npm error path D:\Gaura
+ng\Projects\2026\Ride\a
+pps\mobile
+npm error workspace 
+@rideforge/mobile@1.0.0
+npm error location D:\G
+aurang\Projects\2026\Ri
+de\apps\mobile
+npm error command 
+failed
+npm error command C:\Wi
+ndows\system32\cmd.exe 
+/d /s /c expo 
+run:android

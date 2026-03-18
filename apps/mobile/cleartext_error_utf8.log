@@ -1,0 +1,150 @@
+﻿> Task :expo-gradle-plugin:expo-autolinking-plugin:jar UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:react-native-gradle-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:jar UP-TO-DATE
+> Task :expo-module-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :expo-module-gradle-plugin:compileJava NO-SOURCE
+> Task :expo-module-gradle-plugin:classes UP-TO-DATE
+> Task :expo-module-gradle-plugin:jar UP-TO-DATE
+
+> Configure project :
+[32m[ExpoRootProject][0m Using the following versions:
+  - buildTools:  [32m35.0.0[0m
+  - minSdk:      [32m24[0m
+  - compileSdk:  [32m35[0m
+  - targetSdk:   [32m35[0m
+  - ndk:         [32m27.1.12297006[0m
+  - kotlin:      [32m2.0.21[0m
+  - ksp:         [32m2.0.21-1.0.28[0m
+
+[Incubating] Problems report is available at: file:///D:/Gaurang/Projects/2026/Ride/apps/mobile/android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed 
+with an exception.
+
+* Where:
+Build file 'D:\Gaurang\
+Projects\2026\Ride\apps
+\mobile\android\build.g
+radle' line: 39
+
+* What went wrong:
+A problem occurred 
+evaluating root 
+project 'Rideforge'.
+> Failed to apply 
+plugin 'com.facebook.re
+act.rootproject'.
+   > A problem 
+occurred configuring 
+project ':app'.
+      > SDK location 
+not found. Define a 
+valid SDK location 
+with an ANDROID_HOME 
+environment variable 
+or by setting the 
+sdk.dir path in your 
+project's local 
+properties file at 'D:\
+Gaurang\Projects\2026\R
+ide\apps\mobile\android
+\local.properties'.
+
+* Try:
+> Run with 
+--stacktrace option to 
+get the stack trace.
+> Run with --info or 
+--debug option to get 
+more log output.
+> Run with --scan to 
+get full insights.
+> Get more help at http
+s://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 11s
+28 actionable tasks: 4 executed, 24 up-to-date
+Error: D:\Gaurang\Proje
+cts\2026\Ride\apps\mobi
+le\android\gradlew.bat 
+app:assembleDebug -x 
+lint -x test 
+--configure-on-demand 
+--build-cache -PreactNa
+tiveDevServerPort=8081 
+-PreactNativeArchitectu
+res=arm64-v8a,armeabi-v
+7a exited with 
+non-zero code: 1
+Error: D:\Gaurang\Proje
+cts\2026\Ride\apps\mobi
+le\android\gradlew.bat 
+app:assembleDebug -x 
+lint -x test 
+--configure-on-demand 
+--build-cache -PreactNa
+tiveDevServerPort=8081 
+-PreactNativeArchitectu
+res=arm64-v8a,armeabi-v
+7a exited with 
+non-zero code: 1
+    at ChildProcess.com
+pletionListener (D:\Gau
+rang\Projects\2026\Ride
+\node_modules\@expo\spa
+wn-async\src\spawnAsync
+.ts:67:13)
+    at 
+Object.onceWrapper 
+(node:events:623:26)
+    at 
+ChildProcess.emit 
+(node:events:508:28)
+    at 
+ChildProcess.cp.emit (D
+:\Gaurang\Projects\2026
+\Ride\node_modules\cros
+s-spawn\lib\enoent.js:3
+4:29)
+    at maybeClose (node
+:internal/child_process
+:1100:16)
+    at Process.ChildPro
+cess._handle.onexit (no
+de:internal/child_proce
+ss:305:5)
+    ...
+    at spawnAsync (D:\G
+aurang\Projects\2026\Ri
+de\node_modules\@expo\s
+pawn-async\src\spawnAsy
+nc.ts:28:21)
+    at 
+spawnGradleAsync (D:\Ga
+urang\Projects\2026\Rid
+e\node_modules\@expo\cl
+i\src\start\platforms\a
+ndroid\gradle.ts:134:28
+)
+    at assembleAsync (D
+:\Gaurang\Projects\2026
+\Ride\node_modules\@exp
+o\cli\src\start\platfor
+ms\android\gradle.ts:83
+:16)
+    at runAndroidAsync 
+(D:\Gaurang\Projects\20
+26\Ride\node_modules\@e
+xpo\cli\src\run\android
+\runAndroidAsync.ts:62:
+24)

@@ -1,0 +1,309 @@
+﻿openapi: 3.0.3
+info:
+  title: Rideforge API
+  version: 1.1.0
+servers:
+  - url: http://localhost:4000
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        "200":
+          description: Service healthy
+
+  /api/auth/signup:
+    post:
+      summary: Sign up user
+      responses:
+        "201":
+          description: Created
+
+  /api/auth/login:
+    post:
+      summary: Login user
+      responses:
+        "200":
+          description: Authenticated
+
+  /api/rides/start:
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Start ride tracking
+      responses:
+        "201":
+          description: Ride created
+
+  /api/rides/{id}/stop:
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Stop ride and award distance rewards
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Ride closed
+
+  /api/maps/tile-manifest:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: Online map metadata and offline hints
+      responses:
+        "200":
+          description: Map manifest
+
+  /api/maps/offline-packs:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: List user offline map packs
+      responses:
+        "200":
+          description: Offline packs
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Create offline map pack
+      responses:
+        "201":
+          description: Offline pack created
+
+  /api/chat/conversations:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: List personal/group/help conversations
+      responses:
+        "200":
+          description: Conversations
+
+  /api/chat/riders:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: Search riders by name/locality for chat
+      responses:
+        "200":
+          description: Rider directory results
+
+  /api/chat/conversations/personal:
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Create/get personal chat
+      responses:
+        "201":
+          description: Conversation created
+
+  /api/chat/conversations/group:
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Create group chat
+      responses:
+        "201":
+          description: Group conversation created
+
+  /api/chat/conversations/{id}/messages:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: List messages in conversation
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Messages
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Send message to conversation
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "201":
+          description: Message created
+
+  /api/chat/help-requests:
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Create local rider help request
+      responses:
+        "201":
+          description: Help request created
+
+  /api/chat/help-requests/open:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: List open local help requests for current locality
+      responses:
+        "200":
+          description: Help requests
+
+  /api/chat/help-requests/{id}/respond:
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Respond to local help request and open help chat
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "201":
+          description: Help conversation created
+
+  /api/challenges:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: List dynamic active challenges and reward balance
+      responses:
+        "200":
+          description: Challenge list
+
+  /api/challenges/{id}/complete:
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Complete challenge and grant reward points
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Completion registered
+
+  /api/rewards/balance:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: Get rewards points balance
+      responses:
+        "200":
+          description: Rewards balance
+
+  /api/rewards/transactions:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: Reward ledger entries
+      responses:
+        "200":
+          description: Reward transactions
+
+  /api/store/products:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: List ecommerce products
+      responses:
+        "200":
+          description: Product list
+
+  /api/store/orders:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: List user orders
+      responses:
+        "200":
+          description: Orders
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Create order and optionally redeem points (requires idempotency-key header)
+      responses:
+        "201":
+          description: Order created
+
+  /api/store/orders/{id}:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: Get order details
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Order details
+
+  /api/store/orders/{id}/events:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: Get order shipping timeline
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Order timeline
+
+  /api/store/orders/{id}/status:
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Deprecated for non-admin callers
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "403":
+          description: Forbidden
+
+  /api/store/admin/orders/{id}/status:
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Admin-only shipping status transition
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Status updated
+
+  /api/store/webhook:
+    post:
+      summary: Store order payment webhook receiver
+      responses:
+        "200":
+          description: Webhook processed
+
+  /api/subscriptions/me:
+    get:
+      security: [{ bearerAuth: [] }]
+      summary: Get current subscription
+      responses:
+        "200":
+          description: Subscription detail
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Update subscription tier manually
+      responses:
+        "200":
+          description: Updated subscription
+
+  /api/subscriptions/checkout:
+    post:
+      security: [{ bearerAuth: [] }]
+      summary: Create checkout session (Stripe/Razorpay/RevenueCat)
+      responses:
+        "201":
+          description: Session created
+
+  /api/subscriptions/webhook:
+    post:
+      summary: Payment webhook receiver
+      responses:
+        "200":
+          description: Webhook processed
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

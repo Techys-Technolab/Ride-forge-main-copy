@@ -1,0 +1,50 @@
+﻿npm verbose stack     
+at async 
+Arborist.reify 
+(C:\Program Files\nodej
+s\node_modules\npm\node
+_modules\@npmcli\arbori
+st\lib\arborist\reify.j
+s:110:5)
+npm verbose statusCode 
+404
+npm verbose pkgid 
+@rideforge/shared@1.0.0
+npm error code E404
+npm error 404 Not 
+Found - GET https://reg
+istry.npmjs.org/@ridefo
+rge%2fshared - Not 
+found
+npm error 404
+npm error 404  The 
+requested resource '@ri
+deforge/shared@1.0.0' 
+could not be found or 
+you do not have 
+permission to access 
+it.
+npm error 404
+npm error 404 Note 
+that you can also 
+install from a
+npm error 404 tarball, 
+folder, http url, or 
+git url.
+npm verbose cwd D:\Gaur
+ang\Projects\2026\Ride\
+apps\mobile
+npm verbose os 
+Windows_NT 10.0.26200
+npm verbose node 
+v24.14.0
+npm verbose npm  
+v11.9.0
+npm verbose exit 1
+npm verbose code 1
+npm error A complete 
+log of this run can be 
+found in: C:\Users\vasa
+v\AppData\Local\npm-cac
+he\_logs\2026-03-07T23_
+26_27_582Z-debug-0.log

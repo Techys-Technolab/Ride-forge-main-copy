@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "852401884895",
+    "project_id": "ride-forge-app",
+    "storage_bucket": "ride-forge-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852401884895:android:f0a42f0cbc4fa0cefde36a",
+        "android_client_info": {
+          "package_name": "com.techys.rideforge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAst4W1g30QFJY0YTJpvse1ux7ytjN6dwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

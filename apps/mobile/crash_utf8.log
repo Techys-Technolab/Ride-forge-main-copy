@@ -1,0 +1,6 @@
+﻿
+> @rideforge/server@1.0.0 dev
+> tsx watch src/server.ts
+
+Firebase Admin initialized
+API running on http://0.0.0.0:4000

@@ -1,0 +1,56 @@
+services:
+  - type: web
+    name: rideforge-realtime
+    runtime: docker
+    dockerfilePath: ./infra/docker/server.Dockerfile
+    dockerContext: .
+    autoDeploy: true
+    healthCheckPath: /health
+    plan: starter
+    envVars:
+      - key: PORT
+        value: 4000
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: PAYMENT_PROVIDER
+        value: stripe
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: REVENUECAT_API_KEY
+        sync: false
+      - key: CHECKOUT_SUCCESS_URL
+        sync: false
+      - key: CHECKOUT_CANCEL_URL
+        sync: false
+      - key: SENDGRID_API_KEY
+        sync: false
+      - key: SENDGRID_FROM_EMAIL
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_FROM_PHONE
+        sync: false
+      - key: OTP_PROVIDER_MODE
+        value: live
+      - key: OTP_EXPOSE_DEV_CODES
+        value: false
+      - key: OTP_REQUIRE_LIVE_PROVIDERS
+        value: true
+      - key: FIREBASE_SERVICE_ACCOUNT_JSON
+        sync: false
