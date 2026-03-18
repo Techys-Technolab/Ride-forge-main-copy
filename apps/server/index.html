@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rideforge API</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0d1117;
+        --card: #161b22;
+        --text: #e6edf3;
+        --muted: #9da7b3;
+        --brand: #ff9b2f;
+        --line: #30363d;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at top, rgba(255,155,47,.18), transparent 28%),
+          linear-gradient(180deg, #0b0f14 0%, var(--bg) 100%);
+        color: var(--text);
+        font-family: Segoe UI, Arial, sans-serif;
+      }
+
+      .card {
+        width: min(720px, calc(100vw - 32px));
+        background: rgba(22, 27, 34, 0.94);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(28px, 4vw, 42px);
+      }
+
+      p {
+        margin: 0 0 16px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      a {
+        color: var(--text);
+        text-decoration: none;
+        border: 1px solid var(--line);
+        padding: 12px 16px;
+        border-radius: 12px;
+        background: #11161d;
+      }
+
+      a.primary {
+        background: var(--brand);
+        color: #101317;
+        border-color: transparent;
+        font-weight: 600;
+      }
+
+      code {
+        color: #ffd7a6;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <h1>Rideforge API</h1>
+      <p>The backend is deployed and reachable. Use the health endpoint and <code>/api/*</code> routes for application traffic.</p>
+      <div class="row">
+        <a class="primary" href="/health">Open Health Check</a>
+        <a href="/api/auth/login">API Route Example</a>
+      </div>
+    </main>
+  </body>
+</html>

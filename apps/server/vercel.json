@@ -3,6 +3,7 @@
   "installCommand": "cd ../.. && npm install --workspace @rideforge/shared --workspace @rideforge/server",
   "buildCommand": "cd ../.. && npm run build --workspace @rideforge/shared --workspace @rideforge/server",
   "rewrites": [
-    { "source": "/(.*)", "destination": "/api/index" }
+    { "source": "/api/(.*)", "destination": "/api/index" },
+    { "source": "/health", "destination": "/api/index" }
   ]
 }
