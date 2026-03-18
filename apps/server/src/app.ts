@@ -1,4 +1,4 @@
-﻿import express from "express";
+import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
@@ -29,11 +29,20 @@ export const createApp = () => {
   app.use(express.json({ limit: "2mb" }));
   app.use(morgan("dev"));
 
-  app.use(rateLimit({ keyPrefix: "rl:global", limit: 500, windowSec: 60 }));
+  app.get("/", (_req, res) => {
+    res.json({
+      status: "ok",
+      service: "rideforge-api",
+      message: "Rideforge API is running",
+      health: "/health",
+    });
+  });
 
   app.get("/health", (_req, res) => {
     res.json({ status: "ok", service: "rideforge-api" });
   });
+
+  app.use(rateLimit({ keyPrefix: "rl:global", limit: 500, windowSec: 60 }));
 
   app.use("/api/auth", rateLimit({ keyPrefix: "rl:auth", limit: 80, windowSec: 60 }), authRouter);
   app.use("/api/rides", ridesRouter);
@@ -50,6 +59,13 @@ export const createApp = () => {
   app.use("/api/notifications", notificationsRouter);
   app.use("/api/clubs", clubsRouter);
   app.use("/api/profile", profileRouter);
+
+  app.use((_req, res) => {
+    res.status(404).json({
+      message: "Route not found",
+      service: "rideforge-api",
+    });
+  });
 
   app.use((err: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
     console.error(err);
