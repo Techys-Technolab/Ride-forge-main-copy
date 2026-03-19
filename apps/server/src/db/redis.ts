@@ -1,12 +1,21 @@
-﻿import { createClient } from "redis";
+import { createClient } from "redis";
 import { env } from "../config/env";
 
 const client = createClient({
   url: env.redisUrl,
+  socket: {
+    connectTimeout: 2000,
+    reconnectStrategy: () => false,
+  },
 });
 
+let redisErrorLogged = false;
+
 client.on("error", (err) => {
-  console.error("Redis error", err);
+  if (!redisErrorLogged) {
+    console.warn("Redis unavailable. Continuing without Redis.", err);
+    redisErrorLogged = true;
+  }
 });
 
 export const redis = client;
@@ -16,8 +25,8 @@ export async function initRedis(): Promise<void> {
     try {
       await client.connect();
       console.log("Redis connected");
-    } catch (error) {
-      console.warn("Redis unavailable. Continuing with in-memory fallback where supported.", error);
+    } catch {
+      console.warn("Redis disabled for local run. In-memory / no-cache fallbacks remain active.");
     }
   }
 }
